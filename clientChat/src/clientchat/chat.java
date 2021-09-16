@@ -55,7 +55,7 @@ public class chat extends JFrame {
                             String msg = "";
                             msg = clientThread.getInstance().getDin().readUTF().trim();
                            
-                            doc.insertString(doc.getLength(),"\n" + msg, left);
+                            doc.insertString(doc.getLength(),"\n" + msg , left);
                             doc.setParagraphAttributes(doc.getLength(), 1, left, false);
                         }
                     } catch (BadLocationException ex) {
@@ -234,8 +234,12 @@ public class chat extends JFrame {
             
             clientThread.getInstance().getDout().writeUTF(msg);         
             chatF.setText("");
-            doc.insertString(doc.getLength(), "\n" + msg, right);
-            doc.setParagraphAttributes(doc.getLength(), 1, right, false);
+            String[] strTemps = msg.split("\n");
+            for (String s: strTemps)
+            {
+                doc.insertString(doc.getLength(),"\n" + s , right);
+                doc.setParagraphAttributes(doc.getLength(), 1, right, false);
+            }            
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error" , JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(chat.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,6 +7,9 @@ package serverchat;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Random;
@@ -82,11 +85,10 @@ public class ServerThread extends Thread{
             Thread.sleep(100);
             user.setName(din.readUTF().trim());
             Thread.sleep(100);
-            
             if (x.exists())
             {
                     Scanner scan = new Scanner(x);
-
+                    
                     while(scan.hasNextLine()) {
                         content += scan.nextLine()+"\r\n";
                     }                    
@@ -126,14 +128,17 @@ public class ServerThread extends Thread{
     
     private void writeLogs(String msg) throws IOException
     {
-        Formatter file;
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("logs.dat", true));
-            writer.append(msg);
+//            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("logs.dat"), StandardCharsets.UTF_8);
+//            writer.append(msg);
+            BufferedWriter writer = new BufferedWriter
+                                        (new OutputStreamWriter(new FileOutputStream("logs.dat", true), StandardCharsets.UTF_8));
+            writer.write(msg);
             writer.close();
         } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
         }
+        
     }
 }
