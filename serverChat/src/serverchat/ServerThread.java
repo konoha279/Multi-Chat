@@ -39,9 +39,7 @@ public class ServerThread extends Thread{
         this.socket = socket;
         this.dout = dout;
         this.din = din;
-    }
-    
-    
+    }        
 
     public ServerThread(Socket socket, User user) {
         this.socket = socket;
@@ -51,7 +49,6 @@ public class ServerThread extends Thread{
     public ServerThread(Socket socket) {
         this.socket = socket;
     }
-    
     
     
     public Socket getSocket() {
@@ -76,7 +73,6 @@ public class ServerThread extends Thread{
         String content = "";
         File x = new File("logs.dat");
         try {
-            Thread.sleep(1000);
             din = new DataInputStream(socket.getInputStream());
             dout = new DataOutputStream(socket.getOutputStream());
 
@@ -90,16 +86,18 @@ public class ServerThread extends Thread{
                     Scanner scan = new Scanner(x);
                     
                     while(scan.hasNextLine()) {
-                        content += scan.nextLine()+"\r\n";
+                        content = scan.nextLine()+"\r\n";
+                        dout.writeUTF(content);
                     }                    
                     scan.close();
             }
         
-            dout.writeUTF(content);
+            //dout.writeUTF(content);
         
             Random rand = new Random();
-            int n = rand.nextInt()%5;
-            if (n < 0 ) n *= -1;
+            int n = rand.nextInt();
+            if (n < 0 ) n *= -1;            
+            n %= welcomeNote.length;
             
             sendToAllClients("\n------------> Chào mừng "+ user.getName() + " (MSSV: " + user.getMssv() + ")"+ welcomeNote[n] + "\n");
             writeLogs("\n------------> Chào mừng "+ user.getName() + " (MSSV: " + user.getMssv() + ")"+ welcomeNote[n] + "\n");
@@ -115,7 +113,6 @@ public class ServerThread extends Thread{
             Server.getInstance().getThreads().remove(this);
         } catch (InterruptedException ex) {
             Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
     }
     
@@ -129,14 +126,11 @@ public class ServerThread extends Thread{
     private void writeLogs(String msg) throws IOException
     {
         try {
-//            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("logs.dat"), StandardCharsets.UTF_8);
-//            writer.append(msg);
             BufferedWriter writer = new BufferedWriter
                                         (new OutputStreamWriter(new FileOutputStream("logs.dat", true), StandardCharsets.UTF_8));
             writer.write(msg);
             writer.close();
         } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
         }
         

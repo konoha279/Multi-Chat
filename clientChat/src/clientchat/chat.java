@@ -21,8 +21,8 @@ public class chat extends JFrame {
 
     static chat instance = null;
     Thread thread;
-    SimpleAttributeSet left = new SimpleAttributeSet();
-    SimpleAttributeSet right = new SimpleAttributeSet();
+    SimpleAttributeSet another = new SimpleAttributeSet();
+    SimpleAttributeSet me = new SimpleAttributeSet();
     StyledDocument doc = null;
     public static chat getInstance()
     {
@@ -34,11 +34,11 @@ public class chat extends JFrame {
      * Creates new form chat
      */
     public chat() {        
-        StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
-        StyleConstants.setForeground(left, Color.RED);
+        StyleConstants.setAlignment(another, StyleConstants.ALIGN_LEFT);
+        StyleConstants.setForeground(another, Color.RED);
         
-        StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
-        StyleConstants.setForeground(right, Color.BLUE);
+        StyleConstants.setAlignment(me, StyleConstants.ALIGN_LEFT);
+        StyleConstants.setForeground(me, Color.BLUE);
         initComponents();
         doc = displayChatPanel.getStyledDocument();
         nametxt.setText(clientThread.getInstance().getNameSV());
@@ -55,8 +55,8 @@ public class chat extends JFrame {
                             String msg = "";
                             msg = clientThread.getInstance().getDin().readUTF().trim();
                            
-                            doc.insertString(doc.getLength(),"\n" + msg , left);
-                            doc.setParagraphAttributes(doc.getLength(), 1, left, false);
+                            doc.insertString(doc.getLength(),msg +"\n" , another);
+                            doc.setParagraphAttributes(doc.getLength(), 1, another, false);
                         }
                     } catch (BadLocationException ex) {
                         JOptionPane.showMessageDialog(null, ex, "Error" , JOptionPane.ERROR_MESSAGE);
@@ -237,9 +237,9 @@ public class chat extends JFrame {
             String[] strTemps = msg.split("\n");
             for (String s: strTemps)
             {
-                doc.insertString(doc.getLength(),"\n" + s , right);
-                doc.setParagraphAttributes(doc.getLength(), 1, right, false);
-            }            
+                doc.insertString(doc.getLength(),"Tôi: " + s + "\n" , me);
+                doc.setParagraphAttributes(doc.getLength(), 1, me, false);
+            }           
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error" , JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(chat.class.getName()).log(Level.SEVERE, null, ex);
