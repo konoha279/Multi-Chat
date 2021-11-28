@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package serverchat;
-
 import java.io.*;
 import java.net.*;
 import java.io.IOException;

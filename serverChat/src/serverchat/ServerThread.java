@@ -29,7 +29,7 @@ public class ServerThread extends Thread{
     FileInputStream inFile = null;
     FileOutputStream outFile = null;
     
-    String[] welcomeNote = {" trượt vào phòng.", " vừa mới xuất hiện!", " vừa mới đến.", " đang ở đây.", ". Chúng tôi hy vọng là bạn có mang theo pizza."};
+    String[] welcomeNote = {" trượt vào phòng.", " vừa mới xuất hiện!", " vừa mới đến.", " đang ở đây.", "Đã tham gia!", ". Chúng tôi hy vọng là bạn có mang theo pizza."};
     
     public ServerThread() {
         
