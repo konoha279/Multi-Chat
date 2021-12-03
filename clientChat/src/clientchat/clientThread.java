@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clientchat;
+package com.mycompany.multichat;
+//package clientchat;
 
 import java.io.*;
 import java.net.*;
