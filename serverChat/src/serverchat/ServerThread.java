@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.multichat;
-//package serverchat;
+//package com.mycompany.multichat;
+package serverchat;
 
 
 import java.io.*;
@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Formatter;
 import java.util.Random;
 import java.util.Scanner;
@@ -79,9 +80,10 @@ public class ServerThread extends Thread{
             dout = new DataOutputStream(socket.getOutputStream());
 
             user = new User();
-            user.setMssv(din.readUTF().trim());
+            
+            user.setMssv(new String(Base64.getDecoder().decode(din.readUTF().trim())));
             Thread.sleep(100);
-            user.setName(din.readUTF().trim());
+            user.setName(new String(Base64.getDecoder().decode(din.readUTF().trim())));
             Thread.sleep(100);
             if (x.exists())
             {
@@ -101,8 +103,8 @@ public class ServerThread extends Thread{
             if (n < 0 ) n *= -1;            
             n %= welcomeNote.length;
             
-            sendToAllClients("\n------------> Chào mừng "+ user.getName() + " (MSSV: " + user.getMssv() + ")"+ welcomeNote[n] + "\n");
-            writeLogs("\n------------> Chào mừng "+ user.getName() + " (MSSV: " + user.getMssv() + ")"+ welcomeNote[n] + "\n");
+            sendToAllClients("\n ------------> Chào mừng "+ user.getName() + " (MSSV: " + user.getMssv() + ")"+ welcomeNote[n] + "\n");
+            writeLogs("\n ------------> Chào mừng "+ user.getName() + " (MSSV: " + user.getMssv() + ")"+ welcomeNote[n] + "\n");
             while (true)
             {
                 Thread.sleep(200);

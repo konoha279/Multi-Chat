@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.multichat;
-//package clientchat;
+//package com.mycompany.multichat;
+package clientchat;
 
 import java.awt.Color;
 import java.io.*;
@@ -38,7 +38,7 @@ public class chat extends JFrame {
         StyleConstants.setAlignment(another, StyleConstants.ALIGN_LEFT);
         StyleConstants.setForeground(another, Color.RED);
         
-        StyleConstants.setAlignment(me, StyleConstants.ALIGN_RIGHT);
+        StyleConstants.setAlignment(me, StyleConstants.ALIGN_LEFT);
         StyleConstants.setForeground(me, Color.BLUE);
         initComponents();
         doc = displayChatPanel.getStyledDocument();
@@ -55,9 +55,11 @@ public class chat extends JFrame {
                         {
                             String msg = "";
                             msg = clientThread.getInstance().getDin().readUTF().trim();
-                           
-                            doc.insertString(doc.getLength(),msg +"\n" , another);
-                            doc.setParagraphAttributes(doc.getLength(), 1, another, false);
+                            if (!msg.equals("")) {
+                                doc.insertString(doc.getLength(),msg +"\n" , another);
+                                doc.setParagraphAttributes(doc.getLength(), 1, another, false);
+                            }
+                            
                         }
                     } catch (BadLocationException ex) {
                         JOptionPane.showMessageDialog(null, ex, "Error" , JOptionPane.ERROR_MESSAGE);
@@ -240,11 +242,25 @@ public class chat extends JFrame {
             clientThread.getInstance().getDout().writeUTF(msg);         
             chatF.setText("");
             String[] strTemps = msg.split("\n");
-            for (String s: strTemps)
+            if (strTemps.length == 0) return;
+            if (!strTemps[0].trim().equals(""))
             {
-                doc.insertString(doc.getLength(),"Tôi: " + s + "\n" , me);
+                doc.insertString(doc.getLength(),"Tôi: " + strTemps[0] + "\n" , me);
                 doc.setParagraphAttributes(doc.getLength(), 1, me, false);
-            }           
+            }
+            else
+            {
+                doc.insertString(doc.getLength(),"Tôi:" , me);
+                doc.setParagraphAttributes(doc.getLength(), 1, me, false);
+            }
+            if (strTemps.length > 1)
+                for (int i =1; i< strTemps.length; i++)
+                {
+                    if (strTemps[i].trim().equals("")) continue;
+                    doc.insertString(doc.getLength()," " + strTemps[i] + "\n" , me);
+                    doc.setParagraphAttributes(doc.getLength(), 1, me, false);
+                }
+                      
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error" , JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(chat.class.getName()).log(Level.SEVERE, null, ex);

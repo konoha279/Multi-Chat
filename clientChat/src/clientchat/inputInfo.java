@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.multichat;
-//package clientchat;
+//package com.mycompany.multichat;
+package clientchat;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -72,7 +73,9 @@ public class inputInfo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(536, 300));
         setResizable(false);
+        setSize(new java.awt.Dimension(436, 200));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         mssvTXT.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -136,8 +139,6 @@ public class inputInfo extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 72, 0, 0);
         getContentPane().add(jButton1, gridBagConstraints);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\bg.png")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -166,8 +167,8 @@ public class inputInfo extends javax.swing.JFrame {
             mssv = mssvTXT.getText().trim();
             name = nameTXT.getText().trim();
             
-            clientThread.getInstance().getDout().writeUTF(mssv);
-            clientThread.getInstance().getDout().writeUTF(name);
+            clientThread.getInstance().getDout().writeUTF(Base64.getEncoder().encodeToString(mssv.getBytes()));
+            clientThread.getInstance().getDout().writeUTF(Base64.getEncoder().encodeToString(name.getBytes()));
             
             clientThread.getInstance().setMssvSV(mssv);
             clientThread.getInstance().setNameSV(name);            

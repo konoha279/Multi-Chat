@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.multichat;
-//package clientchat;
+//package com.mycompany.multichat;
+package clientchat;
 
 import java.io.*;
 import java.io.IOException;
@@ -55,6 +55,7 @@ public class client extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(535, 250));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -127,8 +128,6 @@ public class client extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         getContentPane().add(jLabel3, gridBagConstraints);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\bg.png")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -174,7 +173,7 @@ public class client extends javax.swing.JFrame {
 
             new inputInfo().setVisible(true);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, ex, "Error" , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối, vui lòng thử lại!", "Error" , JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
