@@ -8,7 +8,9 @@ package serverchat;
 import java.io.*;
 import java.net.*;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Random;
 /**
  *
  * @author yabok
@@ -20,7 +22,7 @@ public class Server {
      */
     static Server instance = null;
     ArrayList<ServerThread> threads = new ArrayList<>();
-
+    private String codeRoom = "";
     public Server() {
         instance = this;
     }
@@ -41,6 +43,14 @@ public class Server {
     public void setThreads(ArrayList<ServerThread> threads) {
         threads = threads;
     }
+
+    public String getCodeRoom() {
+        return codeRoom;
+    }
+
+    public void setCodeRoom(String codeRoom) {
+        this.codeRoom = codeRoom;
+    }
     
     
     
@@ -56,11 +66,32 @@ public class Server {
         while (true)
         {
             Socket socket = serverSocket.accept();
+            if (Server.getInstance().getThreads().size() == 0)
+                Server.getInstance().setCodeRoom(getRandomString());
             ServerThread serverThread = new ServerThread(socket);
             Server.getInstance().getThreads().add(serverThread);
             serverThread.start();
             System.out.println("Ip: "+ socket.getInetAddress() + " join.");
         }
+    }
+    
+    public static String getRandomString()
+    {
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String passwd = new String();
+        Random rand = new Random();
+        int n = rand.nextInt();
+        if (n < 0)
+                n *= -1;
+        n %= 12;
+        if (n < 7)
+                n += 7;
+        while(n >= 0)
+        {
+                passwd += alphabet.charAt(rand.nextInt(alphabet.length()));
+                n--;
+        }
+        return passwd;
     }
     
 }

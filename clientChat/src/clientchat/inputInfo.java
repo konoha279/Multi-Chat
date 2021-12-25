@@ -21,7 +21,7 @@ public class inputInfo extends javax.swing.JFrame {
     private static inputInfo instance = null;
     private String name = "";
     private String mssv = "";
-
+    
     public String getName() {
         return name;
     }
@@ -170,11 +170,18 @@ public class inputInfo extends javax.swing.JFrame {
             clientThread.getInstance().getDout().writeUTF(Base64.getEncoder().encodeToString(mssv.getBytes()));
             clientThread.getInstance().getDout().writeUTF(Base64.getEncoder().encodeToString(name.getBytes()));
             
+            String tmp = new String(Base64.getDecoder().decode(clientThread.getInstance().getDin().readUTF())); // option
+            clientThread.getInstance().setCodeRoom(new String(Base64.getDecoder().decode(clientThread.getInstance().getDin().readUTF()))); // code room
+            
             clientThread.getInstance().setMssvSV(mssv);
             clientThread.getInstance().setNameSV(name);            
                   
+            
             this.setVisible(false);   
-            chat.getInstance().setVisible(true);
+            if (tmp.equals("0"))
+                chat.getInstance().setVisible(true);
+            else
+                new ChatRoomCode().setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(inputInfo.class.getName()).log(Level.SEVERE, null, ex);
         }

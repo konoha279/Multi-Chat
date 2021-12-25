@@ -44,6 +44,7 @@ public class chat extends JFrame {
         doc = displayChatPanel.getStyledDocument();
         nametxt.setText(clientThread.getInstance().getNameSV());
         mssvtxt.setText(clientThread.getInstance().getMssvSV().trim().toUpperCase());
+        codeRoom.setText(clientThread.getInstance().getCodeRoom());
         thread = new Thread(new Runnable() {
             @Override
             public void run() 
@@ -94,6 +95,8 @@ public class chat extends JFrame {
         jLabel5 = new javax.swing.JLabel();
         nametxt = new javax.swing.JLabel();
         mssvtxt = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        codeRoom = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         displayChatPanel = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
@@ -167,6 +170,8 @@ public class chat extends JFrame {
         mssvtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         mssvtxt.setText("mssv");
 
+        jLabel7.setText("CODE:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,6 +191,11 @@ public class chat extends JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mssvtxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(codeRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +209,11 @@ public class chat extends JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(mssvtxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(mssvtxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(394, 394, 394)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codeRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         getContentPane().add(jPanel1);
@@ -224,8 +238,6 @@ public class chat extends JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(778, 721, 191, 36);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("D:\\bg.png")); // NOI18N
         getContentPane().add(jLabel6);
         jLabel6.setBounds(0, 0, 980, 770);
 
@@ -327,6 +339,7 @@ public class chat extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SENDbutton;
     private javax.swing.JTextArea chatF;
+    private javax.swing.JLabel codeRoom;
     private javax.swing.JTextPane displayChatPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -335,6 +348,7 @@ public class chat extends JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

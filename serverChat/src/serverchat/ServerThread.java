@@ -85,6 +85,19 @@ public class ServerThread extends Thread{
             Thread.sleep(100);
             user.setName(new String(Base64.getDecoder().decode(din.readUTF().trim())));
             Thread.sleep(100);
+            
+            if (Server.getInstance().getThreads().size() <= 1)
+            {
+                dout.writeUTF(Base64.getEncoder().encodeToString("0".getBytes()));
+                Thread.sleep(100);
+                dout.writeUTF(Base64.getEncoder().encodeToString(Server.getInstance().getCodeRoom().getBytes()));
+            }
+            else {
+                dout.writeUTF(Base64.getEncoder().encodeToString("1".getBytes()));
+                Thread.sleep(100);
+                dout.writeUTF(Base64.getEncoder().encodeToString(Server.getInstance().getCodeRoom().getBytes()));
+            }
+
             if (x.exists())
             {
                     Scanner scan = new Scanner(x);

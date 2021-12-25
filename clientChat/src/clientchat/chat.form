@@ -168,6 +168,12 @@
                       </Group>
                   </Group>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jLabel7" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="codeRoom" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -184,6 +190,11 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="mssvtxt" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="394" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel7" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="codeRoom" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -229,6 +240,13 @@
             </Property>
             <Property name="text" type="java.lang.String" value="mssv"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CODE:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="codeRoom">
         </Component>
       </SubComponents>
     </Container>

@@ -8,8 +8,6 @@ package clientchat;
 
 import java.io.*;
 import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +20,7 @@ public class clientThread{
     private static DataInputStream din;
     private static DataOutputStream dout;
     private static clientThread instance = null; 
+    private String codeRoom = "";
 
     public clientThread() {
     }
@@ -76,6 +75,14 @@ public class clientThread{
     public void setDout(DataOutputStream dout) {
         this.dout = dout;
     }    
+
+    public String getCodeRoom() {
+        return codeRoom;
+    }
+
+    public void setCodeRoom(String codeRoom) {
+        this.codeRoom = codeRoom;
+    }
 
     
     
