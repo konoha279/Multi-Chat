@@ -20,7 +20,7 @@ public class Server {
     /**
      * @param args the command line arguments
      */
-    static Server instance = null;
+    static Server instance = null; //singleton
     ArrayList<ServerThread> threads = new ArrayList<>();
     private String codeRoom = "";
     public Server() {

@@ -41,6 +41,7 @@ public class chat extends JFrame {
         StyleConstants.setAlignment(me, StyleConstants.ALIGN_LEFT);
         StyleConstants.setForeground(me, Color.BLUE);
         initComponents();
+        
         doc = displayChatPanel.getStyledDocument();
         nametxt.setText(clientThread.getInstance().getNameSV());
         mssvtxt.setText(clientThread.getInstance().getMssvSV().trim().toUpperCase());
@@ -225,7 +226,7 @@ public class chat extends JFrame {
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(19, 56, 741, 520);
+        jScrollPane3.setBounds(20, 60, 741, 520);
 
         jButton1.setBackground(new java.awt.Color(0, 145, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 3, 11)); // NOI18N

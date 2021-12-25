@@ -19,7 +19,7 @@ public class clientThread{
     private String mssvSV = "";
     private static DataInputStream din;
     private static DataOutputStream dout;
-    private static clientThread instance = null; 
+    private static clientThread instance = null; //singleton
     private String codeRoom = "";
 
     public clientThread() {

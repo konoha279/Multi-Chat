@@ -170,8 +170,13 @@ public class inputInfo extends javax.swing.JFrame {
             clientThread.getInstance().getDout().writeUTF(Base64.getEncoder().encodeToString(mssv.getBytes()));
             clientThread.getInstance().getDout().writeUTF(Base64.getEncoder().encodeToString(name.getBytes()));
             
-            String tmp = new String(Base64.getDecoder().decode(clientThread.getInstance().getDin().readUTF())); // option
-            clientThread.getInstance().setCodeRoom(new String(Base64.getDecoder().decode(clientThread.getInstance().getDin().readUTF()))); // code room
+            String tmp = new String(
+                    Base64.getDecoder().decode(
+                            clientThread.getInstance().getDin().readUTF())); // option
+            
+            clientThread.getInstance().setCodeRoom(
+                    new String(Base64.getDecoder().decode(
+                            clientThread.getInstance().getDin().readUTF()))); // code room
             
             clientThread.getInstance().setMssvSV(mssv);
             clientThread.getInstance().setNameSV(name);            

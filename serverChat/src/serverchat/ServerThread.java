@@ -100,13 +100,13 @@ public class ServerThread extends Thread{
 
             if (x.exists())
             {
-                    Scanner scan = new Scanner(x);
-                    
-                    while(scan.hasNextLine()) {
-                        content = scan.nextLine()+"\r\n";
-                        dout.writeUTF(content);
-                    }                    
-                    scan.close();
+                Scanner scan = new Scanner(x);
+
+                while(scan.hasNextLine()) {
+                    content = scan.nextLine()+"\r\n";
+                    dout.writeUTF(content);
+                }                    
+                scan.close();
             }
         
             //dout.writeUTF(content);
